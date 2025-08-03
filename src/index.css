@@ -1,0 +1,134 @@
+@import './utils/selfHostedFonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Define font variables for consistent usage */
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 140 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 210 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 140 70% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 140 100% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-neon-green/20 selection:text-white;
+  }
+  
+  body {
+    @apply bg-cyber-dark text-foreground antialiased;
+    font-family: var(--font-sans);
+    background-image: radial-gradient(circle at 50% 50%, #141414 0%, #0a0a0a 100%);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-dark;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-green/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neon-green/50;
+  }
+}
+
+@layer components {
+  .cyber-border {
+    @apply relative border border-neon-green/30 rounded-md overflow-hidden;
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.2), inset 0 0 5px rgba(0, 255, 65, 0.1);
+  }
+  
+  .cyber-border::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+  
+  .cyber-border:hover::before {
+    @apply opacity-100;
+  }
+  
+  .matrix-bg {
+    @apply relative overflow-hidden;
+  }
+  
+  .matrix-bg::before {
+    content: '';
+    @apply absolute inset-0 bg-cyber-dark bg-opacity-50;
+  }
+  
+  .matrix-character {
+    @apply absolute text-neon-green opacity-60 font-mono text-xs sm:text-sm animate-matrix-fall;
+  }
+  
+  .btn-cyber {
+    @apply bg-cyber-dark border border-neon-green/50 text-neon-green px-6 py-2 rounded 
+           transition-all duration-300 relative overflow-hidden hover:bg-neon-green/10 
+           font-mono uppercase tracking-wider;
+  }
+  
+  .btn-cyber::before {
+    content: '';
+    @apply absolute inset-0 bg-neon-green/5 transform scale-x-0 origin-left transition-transform duration-300;
+  }
+  
+  .btn-cyber:hover::before {
+    @apply transform scale-x-100;
+  }
+  
+  .cyber-terminal {
+    @apply font-mono text-neon-green bg-cyber-darker p-4 rounded-md border border-neon-green/20;
+  }
+  
+  .neon-text {
+    @apply text-neon-green;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+}
